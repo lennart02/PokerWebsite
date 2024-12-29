@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useGame } from '../context/GameContext';
-import { useSettlement } from '../context/SettlementContext';
-import { calculateSettlements } from '../utils/calculations';
+import { useEffect, useState } from "react";
+import { useGame } from "../context/GameContext";
+import { useSettlement } from "../context/SettlementContext";
+import { calculateSettlements } from "../utils/calculations";
 
 export default function SettlementsView() {
   const { players, setPlayers, initialChips } = useGame();
@@ -20,11 +20,11 @@ export default function SettlementsView() {
   }, [players, setSettlements]);
 
   const handleChipChange = (id, value) => {
-      setChipInputs({
-        ...chipInputs,
-        [id]: value,
-      });
-    };
+    setChipInputs({
+      ...chipInputs,
+      [id]: value,
+    });
+  };
 
   const handleSaveChips = () => {
     setPlayers((prevPlayers) =>
@@ -35,25 +35,27 @@ export default function SettlementsView() {
     );
   };
 
-
-  const getPlayerName = (id) => players.find((p) => p.id === id)?.name || '';
+  const getPlayerName = (id) => players.find((p) => p.id === id)?.name || "";
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Settlements</h2>
+    <div className="max-w-2xl mx-auto p-6  text-gray-900 dark:text-white rounded-lg">
+      <h2 className="text-2xl font-bold mb-6">Settlements</h2>
 
-      <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Update Final Chips</h3>
+      <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md mb-6">
+        <h3 className="text-lg font-semibold mb-4">Update Final Chips</h3>
         {players.map((player) => (
-          <div key={player.id} className="flex items-center justify-between mb-3">
-            <label className="text-gray-700">
+          <div
+            key={player.id}
+            className="flex items-center justify-between mb-3"
+          >
+            <label className="text-gray-700 dark:text-gray-300">
               {getPlayerName(player.id)}:
             </label>
             <input
               type="number"
               placeholder={initialChips}
-              className="border rounded-md p-2 w-24 text-right"
-              value={chipInputs[player.id] || ''}
+              className="border rounded-md p-2 w-24 text-right bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-white"
+              value={chipInputs[player.id] || ""}
               onChange={(e) => handleChipChange(player.id, e.target.value)}
             />
           </div>
@@ -70,12 +72,16 @@ export default function SettlementsView() {
         {settlements.map((settlement, index) => (
           <div
             key={index}
-            className="bg-white p-4 rounded-lg shadow-sm border border-gray-200"
+            className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600"
           >
             <div className="flex items-center justify-between">
-              <span className="text-red-600">{getPlayerName(settlement.from)}</span>
+              <span className="text-red-600">
+                {getPlayerName(settlement.from)}
+              </span>
               <span className="text-gray-500 mx-2">pays</span>
-              <span className="text-green-600">{getPlayerName(settlement.to)}</span>
+              <span className="text-green-600">
+                {getPlayerName(settlement.to)}
+              </span>
             </div>
             <div className="text-center mt-2 text-xl font-semibold">
               ${settlement.amount.toFixed(2)}

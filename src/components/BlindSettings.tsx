@@ -38,7 +38,7 @@ export default function BlindSettings({ blindLevels, onUpdate, onCancel }: Blind
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-medium text-gray-900">Blind Settings</h3>
+      <h3 className="text-lg font-medium">Blind Settings</h3>
       
       <div className="space-y-2">
         {levels.map((level, index) => (
@@ -47,24 +47,24 @@ export default function BlindSettings({ blindLevels, onUpdate, onCancel }: Blind
               type="number"
               value={level.smallBlind}
               onChange={(e) => updateLevel(index, 'smallBlind', Number(e.target.value))}
-              className="w-20 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="w-20 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white"
               min="1"
             />
             <span>/</span>
             <input
               type="number"
               value={level.bigBlind}
-              className="w-20 rounded-md border-gray-300 shadow-sm bg-gray-50"
+              className="w-20 rounded-md border-gray-300 bg-gray-100 shadow-sm bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
               disabled
             />
             <input
               type="number"
               value={level.duration}
               onChange={(e) => updateLevel(index, 'duration', Number(e.target.value))}
-              className="w-20 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="w-20 rounded-md border-gray-300 bg-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white"
               min="1"
             />
-            <span className="text-sm text-gray-500">min</span>
+            <span className="text-sm">min</span>
             <button
               onClick={() => removeLevel(index)}
               className="text-red-600 hover:text-red-800"

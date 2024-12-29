@@ -65,20 +65,20 @@ const POKER_HANDS = [
 
 export default function RulesReference() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Poker Hand Rankings</h2>
+    <div className="max-w-4xl mx-auto p-6  text-gray-900 dark:text-white rounded-lg" >
+      <h2 className="text-2xl font-bold mb-6">Poker Hand Rankings</h2>
       <div className="space-y-4">
         {POKER_HANDS.map((hand) => (
           <div
             key={hand.name}
-            className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+            className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">{hand.name}</h3>
-              <span className="text-sm text-gray-500">Rank: {hand.rank}</span>
+              <h3 className="text-lg font-semibold">{hand.name}</h3>
+              <span className="text-sm text-gray-500 dark:text-gray-300">Rank: {hand.rank}</span>
             </div>
-            <p className="text-gray-600 mt-1">{hand.description}</p>
-            <div className="mt-2 font-mono text-indigo-600">{hand.example}</div>
+            <p className="text-gray-600 dark:text-gray-300 mt-1">{hand.description}</p>
+            <div className="mt-2 font-mono dark:text-indigo-300 text-indigo-600">{hand.example}</div>
           </div>
         ))}
       </div>

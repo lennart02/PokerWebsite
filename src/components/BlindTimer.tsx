@@ -64,7 +64,7 @@ export default function BlindTimer() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-md">
       <div className="text-center space-y-4">
         <div className="flex justify-end">
           <button
@@ -83,11 +83,11 @@ export default function BlindTimer() {
           />
         ) : (
           <>
-            <div className="text-4xl font-bold text-gray-900">
+            <div className="text-4xl font-bold">
               {formatTime(timeLeft)}
             </div>
             
-            <div className="text-xl font-semibold text-gray-700">
+            <div className="text-xl font-semibold">
               Blinds: {blindLevels[currentLevel]?.smallBlind}/{blindLevels[currentLevel]?.bigBlind}
             </div>
 
@@ -107,12 +107,12 @@ export default function BlindTimer() {
             </div>
 
             <div className="mt-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Upcoming Levels</h3>
+              <h3 className="text-lg font-medium mb-2">Upcoming Levels</h3>
               <div className="space-y-2">
                 {blindLevels.slice(currentLevel + 1, currentLevel + 4).map((level, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center py-2 px-4 bg-gray-50 rounded"
+                    className="flex justify-between items-center py-2 px-4 bg-gray-50 dark:bg-gray-700 rounded"
                   >
                     <span>{level.smallBlind}/{level.bigBlind}</span>
                     <span>{level.duration} min</span>
