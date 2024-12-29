@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
-import { Player } from '../types';
-import { useGame } from '../context/GameContext';
+import { Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { useGame } from "../context/GameContext";
+import { Player } from "../types";
 
 interface GameSetupProps {
   onNavigateToTimer: () => void;
 }
 
 export default function GameSetup({ onNavigateToTimer }: GameSetupProps) {
-  const { 
-    players, 
-    setPlayers, 
-    buyIn, 
-    setBuyIn, 
-    initialChips, 
-    setInitialChips, 
-    setGameStarted 
+  const {
+    players,
+    setPlayers,
+    buyIn,
+    setBuyIn,
+    initialChips,
+    setInitialChips,
+    setGameStarted,
   } = useGame();
-  
-  const [newPlayerName, setNewPlayerName] = useState('');
+
+  const [newPlayerName, setNewPlayerName] = useState("");
 
   const addPlayer = () => {
     if (!newPlayerName.trim()) return;
-    
+
     const newPlayer: Player = {
       id: crypto.randomUUID(),
       name: newPlayerName.trim(),
@@ -32,11 +32,11 @@ export default function GameSetup({ onNavigateToTimer }: GameSetupProps) {
     };
 
     setPlayers([...players, newPlayer]);
-    setNewPlayerName('');
+    setNewPlayerName("");
   };
 
   const removePlayer = (id: string) => {
-    setPlayers(players.filter(p => p.id !== id));
+    setPlayers(players.filter((p) => p.id !== id));
   };
 
   const handleStartGame = () => {
@@ -49,11 +49,13 @@ export default function GameSetup({ onNavigateToTimer }: GameSetupProps) {
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg">
       <h2 className="text-2xl font-bold">Game Setup</h2>
-      
+
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium">Buy-in Amount (€)</label>
+            <label className="block text-sm font-medium">
+              Buy-in Amount (€)
+            </label>
             <input
               type="number"
               value={buyIn}
@@ -93,8 +95,22 @@ export default function GameSetup({ onNavigateToTimer }: GameSetupProps) {
 
         <div className="space-y-2">
           {players.map((player) => (
-            <div key={player.id} className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 rounded-md">
-              <span>{player.name}</span>
+            <div
+              key={player.id}
+              className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 rounded-md"
+            >
+              <div className="flex flex-col ">
+                <span>{player.name}</span>
+
+                <div className="flex space-x-6">
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Initial Chips: {player.initialChips}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    Buy-in: {player.buyIn} €
+                  </div>
+                </div>
+              </div>
               <button
                 onClick={() => removePlayer(player.id)}
                 className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-600"

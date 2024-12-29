@@ -4,11 +4,11 @@ import { useSettlement } from "../context/SettlementContext";
 import { calculateSettlements } from "../utils/calculations";
 
 export default function SettlementsView() {
-  const { players, setPlayers, initialChips } = useGame();
+  const { players, setPlayers } = useGame();
   const { settlements, setSettlements } = useSettlement();
   const [chipInputs, setChipInputs] = useState(
     players.reduce((acc, player) => {
-      acc[player.id] = initialChips ?? player.finalChips;
+      acc[player.id] = player.initialChips ?? player.finalChips;
       return acc;
     }, {})
   );
@@ -46,14 +46,14 @@ export default function SettlementsView() {
         {players.map((player) => (
           <div
             key={player.id}
-            className="flex items-center justify-between mb-3"
+            className="flex items-center justify-between mb-3 bg-gradient-to-r from-gray-300 to-gray-300 dark:from-gray-800 dark:to-gray-800 p-3 rounded-lg"
           >
-            <label className="text-gray-700 dark:text-gray-300">
+            <label className="text-gray-700 dark:text-gray-100 font-semibold">
               {getPlayerName(player.id)}:
             </label>
             <input
               type="number"
-              placeholder={initialChips}
+              placeholder={player.initialChips?.toString()}
               className="border rounded-md p-2 w-24 text-right bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-white"
               value={chipInputs[player.id] || ""}
               onChange={(e) => handleChipChange(player.id, e.target.value)}
@@ -64,7 +64,7 @@ export default function SettlementsView() {
           onClick={handleSaveChips}
           className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
         >
-          Save Final Chips
+          Calculate Debts
         </button>
       </div>
 
@@ -75,11 +75,11 @@ export default function SettlementsView() {
             className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600"
           >
             <div className="flex items-center justify-between">
-              <span className="text-red-600">
+              <span className="text-red-600 dark:text-red-500 font-semibold">
                 {getPlayerName(settlement.from)}
               </span>
-              <span className="text-gray-500 mx-2">pays</span>
-              <span className="text-green-600">
+              <span className="text-gray-500 mx-2 dark:text-gray-100">pays</span>
+              <span className="text-green-600 font-semibold">
                 {getPlayerName(settlement.to)}
               </span>
             </div>
