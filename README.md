@@ -11,6 +11,13 @@ A React-based poker tournament management tool that helps you track blinds, mana
 - 📘 Poker hand rankings reference
 - 🌓 Dark/Light mode support
 
+## Demo
+1. Initialize players with buy-in amount
+2. Play ♣️ ♠️ ♥️ ♦️
+3. Update final chips on settlement
+4. See payout calculation
+
+<img src="result.png" alt="alt text" width="40%" />
 
 ## Tech Stack
 
